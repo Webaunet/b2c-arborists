@@ -18,7 +18,7 @@
 (function () {
   var form = document.getElementById('devis-form');
   if (!form) return;
-  var TEL = '+33610214660', MAIL = '';
+  var TEL = '+33610214660';
   var rules = {
     'f-nom': ['e-nom', function (v) { return v.trim().length >= 2 ? '' : 'Indiquez votre nom.'; }],
     'f-tel': ['e-tel', function (v) { return /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.\-]*\d{2}){4}$/.test(v.trim()) ? '' : 'Indiquez un numéro de téléphone français valide.'; }],
@@ -43,7 +43,6 @@
     var t = 'Bonjour, je souhaite un devis.\nBesoin : ' + v('f-besoin') + '\nNom : ' + v('f-nom') + '\nTéléphone : ' + v('f-tel') + '\nCommune : ' + v('f-com') + (v('f-msg') ? '\nMessage : ' + v('f-msg') : '');
     txt.value = t;
     document.getElementById('r-sms').href = 'sms:' + TEL + '?&body=' + encodeURIComponent(t);
-    document.getElementById('r-mail').href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Demande de devis : ' + v('f-besoin')) + '&body=' + encodeURIComponent(t);
     form.hidden = true; recap.hidden = false; msg.textContent = ''; txt.focus();
   });
   document.getElementById('r-edit').addEventListener('click', function () { recap.hidden = true; form.hidden = false; document.getElementById('f-nom').focus(); });
